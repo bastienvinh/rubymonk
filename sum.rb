@@ -10,12 +10,12 @@ class MyArray
 
   def sum(initial_value = 0)
     # binding.pry
-    initial_value + @array.inject(0) do |sum, number| 
+    @array.inject(initial_value) do |sum, number| 
       sum + (block_given? ? yield(number) : number)
     end
   end
 end
 
-puts MyArray.new([1,2,3]).sum
-puts MyArray.new([1,2,3]).sum(10)
-puts MyArray.new([1,2,3]).sum(0) { |n| n ** 2 }
+# puts MyArray.new([1,2,3]).sum
+# puts MyArray.new([1,2,3]).sum(10)
+# puts MyArray.new([1,2,3]).sum(0) { |n| n ** 2 }
