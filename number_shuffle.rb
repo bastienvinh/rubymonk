@@ -1,13 +1,13 @@
 require 'Benchmark'
 require 'pp'
+require 'pry'
+require 'pry-byebug'
 
 # finally beats the algorithm of rubymonk ><''
 
 def number_shuffle(number)
-  res = []
-  sample = number.to_s
-  sample.chars.combination(sample.length).each { |a| res << a.join.to_i }
-  res
+  sample = number.to_s.chars
+  sample.permutation(sample.length).map { |a| a.join.to_i }
 end
 
 # Ruby monk solutions
@@ -19,7 +19,6 @@ def number_shuffle2(number)
   combinations << digits.shuffle.join.to_i while combinations.uniq.size!=no_of_combinations
   combinations.uniq.sort
 end
-
 
 puts Benchmark.measure { number_shuffle(1234567890) }
 puts Benchmark.measure { number_shuffle2(1234567890) }
